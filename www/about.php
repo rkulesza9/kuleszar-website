@@ -13,6 +13,8 @@
 		<link rel="stylesheet" href="css/pace.css">
 	    <link rel="stylesheet" href="css/custom.css">
 
+	    <link rel="icon" type="image/png" href="img/logo.png">
+
 	    <!-- js -->
 	    <script src="js/jquery-2.1.3.min.js"></script>
 	    <script src="js/bootstrap.min.js"></script>
@@ -21,7 +23,7 @@
 	</head>
 
 	<body id="page">
-		<div class="container">	
+		<div class="container">
 			<header id="site-header">
 				<div class="row">
 					<div class="col-md-4 col-sm-5 col-xs-8">
@@ -53,7 +55,7 @@
 									<input type="search" placeholder="Search"
 									name='search' required>
 									<button name='srch_bttn' type="submit"><span class="ion-ios-search-strong"></span></button>
-								</form>							
+								</form>
 							</div>
 						</div>
 					</div><!-- col-md-8 -->
@@ -65,7 +67,7 @@
 				width: 50%;
 				height: 50%;
 			}
-			
+
 		</style>
 		<div class="content-body">
 			<div class="container">
@@ -97,32 +99,27 @@
 								</table>
 
 								<h1> Hello World! </h1>
-								<p>As a lover of programming and mathematics I wanted a place online where I could easily gather my projects/content in order to easily show others. This will hopefully also prevent me from losing past projects or deleting them out of temporary stupidity. </p>
+								<p>I am a Computer Science and Mathematics major at Kean university. I love doing mathematics, programming, and creating things. Most of all, I enjoy learning and strive to constantly be in a position to learn new things. This website is the product of those four things. </p>
 
 								<h2>What can you expect to find here?</h2>
 
-								<p> I'm going to compile a list of categories that will give you a quick picture of what I will post on here. I'll update the list as time goes on. As a mathematician-in-training, I know it's important to be lazy and concise! </p>
+								<p> I'm going to compile a list of categories that will give you a quick picture of what I will post on here. I'll update the list as time goes on. As a mathematics student, I know it's important to be concise! </p>
 
 								<ul>
-									<li>Stuff I like to research and play around with on my free time</li>
-									<ul>
-										<li>Mathematics</li>
-										<li>Computer Science</li>
-										<li>Other Sciences</li>
-									</ul>
-									<li>Projects I'm working on</li>
-									<li>Whatever I feel like doing next</li>
+									<li>General Science, Computer Science, and Mathematics Articles</li>
+									<li>math proofs</li>
+									<li>personal life & accomplishments</li>
 								</ul>
-								<p>That's my Social Media below.<br><br> Enjoy!</p>
 
-								
+
 								<div class="height-40px"></div>
 								<h2 class="title text-center">Social Media</h2>
 								<ul class="social">
 									<li class="facebook"><a href="https://www.facebook.com/koolesza"><span class="ion-social-facebook"></span></a></li>
-									<li class="twitter"><a href="https://twitter.com/illeagle99"><span class="ion-social-twitter"></span></a></li>
+									<li class="twitter"><a href="https://twitter.com/robkulesza"><span class="ion-social-twitter"></span></a></li>
+									<li class='linkedin'><a href="https://www.linkedin.com/in/robert-kulesza-6a31b2155/"><span class='ion-social-linkedin'></span></a></li>
 									<!--<li class="google-plus"><a href="#"><span class="ion-social-googleplus"></span></a></li>
-									<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li> -->
+									<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li>-->
 								</ul>
 							</div>
 						</article>
@@ -134,7 +131,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2018 Robert Kulesza</p>
+						<p class="copyright">&copy; 2018 Robert Kulesza - theme from <a href="www.themewagon.com">Theme Wagon</a></p>
 					</div>
 				</div>
 			</div>
@@ -154,6 +151,6 @@
 		</div>
 
 		<script src="js/script.js"></script>
-		
+
 	</body>
 </html>

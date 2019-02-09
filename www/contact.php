@@ -1,12 +1,5 @@
 <?php
-	$servername = 'localhost';
-	$username = 'root';
-	$password = '';
-	$db = 'blog';
-
-
-	$conn = new mysqli($servername,$username,$password,$db);
-
+	include 'dbconfig.php';
 	if($conn->connect_error){
 		die("Connection Failed: ".$conn->connect_error);
 	}else {
@@ -36,7 +29,7 @@
 
     		$output = mail($toEmail, "contact form entry - kuleszar.com", $emailMessage, $headers, "-f".$fromEmail);
 
-    		echo("<script>alert('Contact Form Submitted');");
+    		echo("<script>alert('Contact Form Submitted');</script>");
 		}
 
 	}
@@ -57,6 +50,7 @@
 		<link rel="stylesheet" href="css/ionicons.min.css">
 		<link rel="stylesheet" href="css/pace.css">
 	    <link rel="stylesheet" href="css/custom.css">
+			 <link rel="icon" type="image/png" href="img/logo.png">
 
 	    <!-- js -->
 	    <script src="js/jquery-2.1.3.min.js"></script>
@@ -66,7 +60,7 @@
 	</head>
 
 	<body id="page">
-		<div class="container">	
+		<div class="container">
 			<header id="site-header">
 				<div class="row">
 					<div class="col-md-4 col-sm-5 col-xs-8">
@@ -98,7 +92,7 @@
 									<input type="search" placeholder="Search"
 									name='search' required>
 									<button name='srch_bttn' type="submit"><span class="ion-ios-search-strong"></span></button>
-								</form>						
+								</form>
 							</div>
 						</div>
 					</div><!-- col-md-8 -->
@@ -134,7 +128,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2018 Robert Kulesza</p>
+						<p class="copyright">&copy; 2018 Robert Kulesza - theme from <a href="www.themewagon.com">Theme Wagon</a></p>
 					</div>
 				</div>
 			</div>
@@ -154,6 +148,6 @@
 		</div>
 
 		<script src="js/script.js"></script>
-		
+
 	</body>
 </html>

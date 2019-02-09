@@ -1,12 +1,5 @@
 <?php
-	$servername = 'localhost';
-	$username = 'root';
-	$password = '';
-	$db = 'blog';
-
-
-	$conn = new mysqli($servername,$username,$password,$db);
-
+	include 'dbconfig.php';
 	if($conn->connect_error){
 		die("Connection failed: ".$conn->connect_error);
 	} else {
@@ -39,11 +32,11 @@
 		if(isset($_GET['tag'])){
 			$stmt->bind_param("s",$tag);
 			$tag = $_GET['tag'];
-		} 
+		}
 		if(isset($_GET['archive'])){
 			$stmt->bind_param("ss",$start,$end);
 			$start = $_GET['archive']."-01";
-			$end = $_GET['archive']."-31"; 
+			$end = $_GET['archive']."-31";
 		}
 		if(isset($_GET['search'])){
 			$stmt->bind_param("ssss",$srch,$srch,$srch,$srch);
@@ -81,6 +74,7 @@
 		<link rel="stylesheet" href="css/ionicons.min.css">
 		<link rel="stylesheet" href="css/pace.css">
 	    <link rel="stylesheet" href="css/custom.css">
+		  <link rel="icon" type="image/png" href="img/logo.png">
 
 	    <!-- js -->
 	    <script src="js/jquery-2.1.3.min.js"></script>
@@ -100,7 +94,7 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-		<div class="container">	
+		<div class="container">
 			<header id="site-header">
 				<div class="row">
 					<div class="col-md-4 col-sm-5 col-xs-8">
@@ -132,7 +126,7 @@
 									<input type="search" placeholder="Search"
 									name='search' required>
 									<button name='srch_bttn' type="submit"><span class="ion-ios-search-strong"></span></button>
-								</form>							
+								</form>
 							</div>
 						</div>
 					</div><!-- col-md-8 -->
@@ -165,23 +159,23 @@
 									<a href="'.$article_href.'">'.$title.'</a>
 								</h1>
 								<div class="entry-meta"><span class="post-category">';
-								
+
 								for($y = 0; $y < count($tags); $y++){
 									if($y > 0) echo '&nbsp';
 									echo '<a href="'.$tag_href.$tags[$y].'">'.$tags[$y].'</a>';
 								}
 
 								echo '</span>
-			
+
 									<span class="post-date"><a href="'.$archive_href.'"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">'.$archive.'</time></a></span>
-			
+
 									<span class="post-author"><a href="about.php">'.$author.'</a></span>
-			
+
 									<span class="comments-link"><a href="single.php?article_id='.$article_id.'"><span class="fb-comments-count" data-href="http://www.kuleszar.com/single.php?article_id='.$article_id.'">0</span> Comments</a></span>
 								</div>
 							</header>
 							<div class="entry-content clearfix">'.$content.'
-								
+
 								<div class="read-more cl-effect-14">
 									<a href="'.$article_href.'" class="more-link">Continue reading <span class="meta-nav">→</span></a>
 								</div>
@@ -189,7 +183,7 @@
 						</article>';
 							}
 						?>
-						
+
 					</main>
 				</div>
 			</div>
@@ -198,7 +192,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2018 Robert Kulesza</p>
+						<p class="copyright">&copy; 2018 Robert Kulesza - theme from <a href="www.themewagon.com">Theme Wagon</a></p>
 					</div>
 				</div>
 			</div>

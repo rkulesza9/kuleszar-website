@@ -1,12 +1,7 @@
 <?php
-	$servername = 'localhost';
-	$username = 'root';
-	$password = '';
-	$db = 'blog';
-
+	include 'dbconfig.php';
 	$safe_tags = "<p><a><h>";
 
-	$conn = new mysqli($servername,$username,$password,$db);
 	if($conn->connect_error){
 		die("Connection failed: ".$conn->connect_error);
 	}else {
@@ -38,6 +33,7 @@
 		<link rel="stylesheet" href="css/ionicons.min.css">
 		<link rel="stylesheet" href="css/pace.css">
 	    <link rel="stylesheet" href="css/custom.css">
+			 <link rel="icon" type="image/png" href="img/logo.png">
 
 	    <!-- js -->
 	    <script src="js/jquery-2.1.3.min.js"></script>
@@ -56,7 +52,7 @@
   js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1628581433917037&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-		<div class="container">	
+		<div class="container">
 			<header id="site-header">
 				<div class="row">
 					<div class="col-md-4 col-sm-5 col-xs-8">
@@ -87,7 +83,7 @@
 								<form role="search" method="get" id="searchform" action="full-width.php">
 									<input type="search" placeholder="Search" name='search' required>
 									<button type="submit" name="srch_bttn"><span class="ion-ios-search-strong"></span></button>
-								</form>				
+								</form>
 							</div>
 						</div>
 					</div><!-- col-md-8 -->
@@ -103,7 +99,7 @@
 						<article class="post post-1">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<?php 
+									<?php
 										if(count($data) > 0){
 										echo "<a href='single.php?article_id=".$data[0]["id"]."'>";
 										echo $data[0]["title"];
@@ -141,19 +137,19 @@
 										array_push($arch,substr($data[3]["date_published"],0,7));
 									}
 									?>
-									<?php 
+									<?php
 										if(count($data) > 0){
 											echo '<span class="post-date">';
 											echo "<a href='full-width.php?archive=".$arch[0]."'>";
 											echo "<time class='entry-date' datetime='".$data[0]["date_published"]."'>";
-											echo $data[0]["date_published"]; 
+											echo $data[0]["date_published"];
 											echo "</time>";
 											echo "</a>";
 											echo '</span>';
 										}
 									?></span>
-			
-									
+
+
 										<?php if(count($data) > 0){
 											echo '<span class="post-author"><a href="about.php">';
 											echo $data[0]["author"];
@@ -173,8 +169,8 @@
 							<div class="entry-content clearfix">
 								<?php if(count($data) > 0) echo strip_tags($data[0][$content],$safe_tags); ?>
 								<div class="read-more cl-effect-14">
-									
-									<?php 
+
+									<?php
 									if(count($data) > 0){
 										echo "<a href='single.php?article_id=".$data[0]["id"]."'>";
 										echo "Continue reading";
@@ -189,7 +185,7 @@
 						<article class="post post-2">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<?php 
+									<?php
 									if(count($data) > 1){
 										echo "<a href='single.php?article_id=".$data[1]["id"]."'>";
 										echo $data[1]["title"];
@@ -198,7 +194,7 @@
 									?>
 								</h1>
 								<div class="entry-meta">
-									<?php 
+									<?php
 									if(count($data) > 1){
 										echo '<span class="post-category">';
 										$tags = preg_split("~;~",$data[1]["tags"]);
@@ -211,32 +207,32 @@
 										}
 										echo "</span>";
 									}									?>
-										
-									
-			
-									
-									<?php 
+
+
+
+
+									<?php
 										if(count($data) > 1){
 											echo '<span class="post-date">';
 											echo "<a href='full-width.php?archive=".$arch[1]."'>";
 											echo "<time class='entry-date' datetime='".$data[1]["date_published"]."'>";
-											echo $data[1]["date_published"]; 
+											echo $data[1]["date_published"];
 											echo "</time>";
 											echo "</a>";
 											echo '</span>';
 										}
 									?>
-			
-			
-									
+
+
+
 
 										<?php if(count($data) > 1){
 											echo '<span class="post-author"><a href="about.php">';
 											echo $data[1]["author"];
-											echo '</a></span>'; 
+											echo '</a></span>';
 										}
 										?>
-			
+
 									<?php
 									if(count($data) > 1){
 										echo '<a href="single.php?article_id='.$data[1]["id"].'">';
@@ -249,7 +245,7 @@
 							<div class="entry-content clearfix">
 								<?php if(count($data) > 1) echo strip_tags($data[1][$content],$safe_tags); ?>
 								<div class="read-more cl-effect-14">
-									<?php 
+									<?php
 									if(count($data) > 1){
 										echo "<a href='single.php?article_id=".$data[1]["id"]."'>";
 										echo "Continue reading";
@@ -265,7 +261,7 @@
 							<header class="entry-header">
 								<header class="entry-header">
 								<h1 class="entry-title">
-									<?php 
+									<?php
 										if(count($data) > 2){
 											echo "<a href='single.php?article_id=".$data[2]["id"]."'>";
 											echo $data[2]["title"];
@@ -274,7 +270,7 @@
 									?>
 								</h1>
 								<div class="entry-meta">
-									<?php 
+									<?php
 									if(count($data) > 2){
 										echo '<span class="post-category">';
 										$tags = preg_split("~;~",$data[2]["tags"]);
@@ -288,29 +284,29 @@
 										echo '</span>';
 									}
 									?>
-			
-									
-									<?php 
+
+
+									<?php
 									if(count($data) > 2){
 										echo '<span class="post-date">';
 										echo "<a href='full-width.php?archive=".$arch[2]."'>";
 										echo "<time class='entry-date' datetime='".$data[2]["date_published"]."'>";
-										echo $data[2]["date_published"]; 
+										echo $data[2]["date_published"];
 										echo "</time>";
 										echo "</a>";
 										echo '</span>';
 									}
 									?>
-			
-									
-										<?php 
+
+
+										<?php
 										if(count($data) > 2){
 											echo '<span class="post-author"><a href="about.php">';
 										 	echo $data[2]["author"];
 										 	echo '</a></span>';
 										}
 										 ?>
-			
+
 									<?php
 									if(count($data) > 2){
 										echo '<a href="single.php?article_id='.$data[2]["id"].'">';
@@ -323,7 +319,7 @@
 							<div class="entry-content clearfix">
 								<?php if(count($data) > 2) echo strip_tags($data[2][$content],$safe_tags); ?>
 								<div class="read-more cl-effect-14">
-									<?php 
+									<?php
 									if(count($data) > 2){
 										echo "<a href='single.php?article_id=".$data[2]["id"]."'>";
 										echo "Continue reading";
@@ -338,7 +334,7 @@
 						<article class="post post-4">
 							<header class="entry-header">
 								<h1 class="entry-title">
-									<?php 
+									<?php
 									if(count($data) > 3){
 										echo "<a href='single.php?article_id=".$data[3]["id"]."'>";
 										echo $data[3]["title"];
@@ -347,7 +343,7 @@
 									?>
 								</h1>
 								<div class="entry-meta">
-									<?php 
+									<?php
 									if(count($data) > 3){
 										echo '<span class="post-category">';
 										$tags = preg_split("~;~",$data[0]["tags"]);
@@ -361,29 +357,29 @@
 										echo '</span>';
 									}
 									?>
-			
-									
-									<?php 
+
+
+									<?php
 									if(count($data) > 3){
 										echo '<span class="post-date">';
 										echo "<a href='full-width.php?archive=".$arch[3]."'>";
 										echo "<time class='entry-date' datetime='".$data[3]["date_published"]."'>";
-										echo $data[3]["date_published"]; 
+										echo $data[3]["date_published"];
 										echo "</time>";
 										echo "</a>";
 										echo '</span>';
 									}
 									?>
-			
-									
+
+
 										<?php if(count($data) > 3){
 											echo '<span class="post-author"><a href="about.php">';
-											echo $data[3]["author"]; 
+											echo $data[3]["author"];
 											echo '</a></span>';
-										} 
+										}
 
 										?>
-			
+
 									<?php
 									if(count($data) > 3){
 										echo '<a href="single.php?article_id='.$data[3]["id"].'">';
@@ -396,7 +392,7 @@
 							<div class="entry-content clearfix">
 								<?php if(count($data) > 3) echo strip_tags($data[3][$content],$safe_tags); ?>
 								<div class="read-more cl-effect-14">
-									<?php 
+									<?php
 									if(count($data) > 3){
 										echo "<a href='single.php?article_id=".$data[3]["id"]."'>";
 										echo "Continue reading";
@@ -409,11 +405,11 @@
 						</article>
 					</main>
 					<aside class="col-md-4">
-						<div class="widget widget-recent-posts">		
-							<h3 class="widget-title">Recent Posts</h3>		
+						<div class="widget widget-recent-posts">
+							<h3 class="widget-title">Recent Posts</h3>
 							<ul>
-								
-									<?php 
+
+									<?php
 									if(count($data) > 0){
 										echo "<li>";
 										echo "<a href='single.php?article_id=".$data[0]["id"]."'>";
@@ -457,8 +453,8 @@
 						}
 
 						?>
-						<div class="widget widget-archives">		
-							<h3 class="widget-title">Archives</h3>		
+						<div class="widget widget-archives">
+							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<?php
 									for($x = 0; $x < count($archives); $x++){
@@ -484,8 +480,8 @@
 
 						?>
 
-						<div class="widget widget-category">		
-							<h3 class="widget-title">Category</h3>		
+						<div class="widget widget-category">
+							<h3 class="widget-title">Category</h3>
 							<ul>
 								<?php
 									for($x = 0; $x < count($tags); $x++){
@@ -504,7 +500,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2018 Robert Kulesza</p>
+						<p class="copyright">&copy; 2018 Robert Kulesza - theme from <a href="www.themewagon.com">Theme Wagon</a></p>
 					</div>
 				</div>
 			</div>

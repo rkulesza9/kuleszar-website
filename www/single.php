@@ -1,13 +1,5 @@
 <?php
-	$servername = 'localhost';
-	$username = 'root';
-	$password = '';
-	$db = 'blog';
-
-
-
-	$conn = new mysqli($servername,$username,$password,$db);
-
+	include 'dbconfig.php';
 	if($conn->connect_error){
 		die("Connection failed: ".$conn->connect_error);
 	} else {
@@ -38,6 +30,7 @@
 		<link rel="stylesheet" href="css/ionicons.min.css">
 		<link rel="stylesheet" href="css/pace.css">
 	    <link rel="stylesheet" href="css/custom.css">
+			 <link rel="icon" type="image/png" href="img/logo.png">
 
 	    <!-- js -->
 	    <script src="js/jquery-2.1.3.min.js"></script>
@@ -60,12 +53,12 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-		
+
 
 	    <meta property="fb:app_id" content="1628581433917037" />
 
 
-		<div class="container">	
+		<div class="container">
 			<header id="site-header">
 				<div class="row">
 					<div class="col-md-4 col-sm-5 col-xs-8">
@@ -97,7 +90,7 @@
 									<input type="search" placeholder="Search"
 									name='search' required>
 									<button name='srch_bttn' type="submit"><span class="ion-ios-search-strong"></span></button>
-								</form>				
+								</form>
 							</div>
 						</div>
 					</div><!-- col-md-8 -->
@@ -126,18 +119,18 @@
 											echo "</a>";
 										}
 										?></span>
-			
+
 									<span class="post-date">
 
-										<?php 
+										<?php
 											$arch = substr($data['date_published'],0,7);
 											echo '<a href=full-width.php?archive='.$arch.'><time class="entry-date" datetime="'.$data['date_published'].'">';
-											echo $data['date_published']; 
+											echo $data['date_published'];
 											echo "</time></a>";
 										?></span>
-			
+
 									<span class="post-author"><a href="about.php"><?php echo $data['author']; ?></a></span>
-			
+
 									<?php
 										echo '<a href="single.php?article_id='.$data["id"].'">';
 										echo '<span class="fb-comments-count" data-href="http://www.kuleszar.com/single.php?article_id='.$data["id"].'">0</span>';
@@ -150,8 +143,8 @@
 							</div>
 						</article>
 
-						
-						<?php 
+
+						<?php
 							echo '<div id="comments" class="fb-comments" data-href="http://www.kuleszar.com/single.php?article_id=';
 							echo $_GET["article_id"];
 							echo'" data-width="0" data-numposts="5"></div>';
@@ -159,8 +152,8 @@
 
 					</main>
 					<aside class="col-md-4">
-						<div class="widget widget-recent-posts">		
-							<h3 class="widget-title">Recent Posts</h3>		
+						<div class="widget widget-recent-posts">
+							<h3 class="widget-title">Recent Posts</h3>
 							<ul>
 									<?php
 										$rp_query_str = "SELECT * FROM blog.articles ORDER BY date_published DESC LIMIT 3";
@@ -197,8 +190,8 @@
 						}
 
 						?>
-						<div class="widget widget-archives">		
-							<h3 class="widget-title">Archives</h3>		
+						<div class="widget widget-archives">
+							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<?php
 									for($x = 0; $x < count($archives); $x++){
@@ -223,8 +216,8 @@
 
 						?>
 
-						<div class="widget widget-category">		
-							<h3 class="widget-title">Category</h3>		
+						<div class="widget widget-category">
+							<h3 class="widget-title">Category</h3>
 							<ul>
 								<?php
 									for($x = 0; $x < count($tags); $x++){
@@ -243,7 +236,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-						<p class="copyright">&copy; 2018 Robert Kulesza</p>
+						<p class="copyright">&copy; 2018 Robert Kulesza - theme from <a href="www.themewagon.com">Theme Wagon</a></p>
 					</div>
 				</div>
 			</div>
