@@ -8,7 +8,7 @@
 
 
 		if(isset($_GET['tag'])){
-			$adjustment = "WHERE INSTR(tags, ?)";
+			$adjustment = 'where id in (select a_id from tagged where t_id=(select id from tags where tag=?))';
 		}
 		elseif(isset($_GET['archive'])){
 			$adjustment = "WHERE date_published >= ? AND date_published <= ?";
@@ -23,7 +23,7 @@
 			$adjustment = "WHERE INSTR(tags, ?) OR date_published= ? OR INSTR(title, ?) OR INSTR(content, ?)";
 		}
 
-		$query_str = "SELECT id, SUBSTRING(content,1,500), tags, title, date_published, author FROM blog.articles";
+		$query_str = "SELECT id, SUBSTRING(content,1,500), title, date_published, author FROM blog.articles";
 		$query_str = $query_str." ".$adjustment;
 		$query_str = $query_str." ORDER BY date_published DESC LIMIT 4";
 
@@ -43,20 +43,34 @@
 			$srch = $_GET['search'];
 		}
 
-		$stmt->bind_result($id,$cont,$tags,$title,$dp,$author);
+		$stmt->bind_result($id,$cont,$title,$dp,$author);
 
 		$stmt->execute();
 
 		$data = array();
 
+		$tags = 'puppy';
 		while($stmt->fetch()){
 			$row = array("id"=>$id,"SUBSTRING(content,1,500)"=>$cont, "tags"=>$tags, "title"=>$title, "date_published"=>$dp,"author"=>$author);
 			array_push($data,$row);
 		}
-
 		$stmt->close();
 	}
-
+	for($x=0; $x<count($data); $x++){
+		//get $tags
+		$sql = "select tag from tags where id in (select t_id from tagged where a_id=?)";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("i",$data[$x]["id"]);
+		$stmt->bind_result($tag);
+		$stmt->execute();
+		$stmt->fetch();
+		$tags = $tag;
+		while($stmt->fetch()){
+			$tags .= ";".$tag;
+		}
+		$data[$x]['tags'] = $tags;
+		$stmt->close();
+	}
 	$content = "SUBSTRING(content,1,500)";
 ?>
 

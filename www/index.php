@@ -5,14 +5,31 @@
 	if($conn->connect_error){
 		die("Connection failed: ".$conn->connect_error);
 	}else {
-		$query_str = "SELECT id, SUBSTRING(content,1,500), tags, title, date_published, author FROM articles ORDER BY date_published DESC LIMIT 4";
+		$query_str = "SELECT id, SUBSTRING(content,1,500), title, date_published, year(archive) as year, month(archive) as month, author FROM articles ORDER BY date_published DESC LIMIT 4";
 		$result = $conn->query($query_str);
 
 		$data = array();
 
 		while($row = $result->fetch_assoc()){
+			$row['archive'] = $row['year']."-".$row['month'];
 			array_push($data,$row);
 		}
+	}
+
+	for($x=0; $x<count($data); $x++){
+		//get $tags
+		$sql = "select tag from tags where id in (select t_id from tagged where a_id=?)";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("i",$data[$x]["id"]);
+		$stmt->bind_result($tag);
+		$stmt->execute();
+		$stmt->fetch();
+		$tags = $tag;
+		while($stmt->fetch()){
+			$tags .= ";".$tag;
+		}
+		$data[$x]['tags'] = $tags;
+		$stmt->close();
 	}
 
 	$content = "SUBSTRING(content,1,500)";
@@ -122,25 +139,11 @@
 										echo '</span>';
 									}
 										?>
-									<?php
-									$arch = array();
-									if(count($data) > 0){
-										array_push($arch,substr($data[0]["date_published"],0,7));
-									}
-									if(count($data) > 1){
-										array_push($arch,substr($data[1]["date_published"],0,7));
-									}
-									if(count($data) > 2){
-										array_push($arch,substr($data[2]["date_published"],0,7));
-									}
-									if(count($data) > 3){
-										array_push($arch,substr($data[3]["date_published"],0,7));
-									}
-									?>
+
 									<?php
 										if(count($data) > 0){
 											echo '<span class="post-date">';
-											echo "<a href='full-width.php?archive=".$arch[0]."'>";
+											echo "<a href='full-width.php?archive=".$data[0]['archive']."'>";
 											echo "<time class='entry-date' datetime='".$data[0]["date_published"]."'>";
 											echo $data[0]["date_published"];
 											echo "</time>";
@@ -214,7 +217,7 @@
 									<?php
 										if(count($data) > 1){
 											echo '<span class="post-date">';
-											echo "<a href='full-width.php?archive=".$arch[1]."'>";
+											echo "<a href='full-width.php?archive=".$data[1]['archive']."'>";
 											echo "<time class='entry-date' datetime='".$data[1]["date_published"]."'>";
 											echo $data[1]["date_published"];
 											echo "</time>";
@@ -289,7 +292,7 @@
 									<?php
 									if(count($data) > 2){
 										echo '<span class="post-date">';
-										echo "<a href='full-width.php?archive=".$arch[2]."'>";
+										echo "<a href='full-width.php?archive=".$data[2]['archive']."'>";
 										echo "<time class='entry-date' datetime='".$data[2]["date_published"]."'>";
 										echo $data[2]["date_published"];
 										echo "</time>";
@@ -362,7 +365,7 @@
 									<?php
 									if(count($data) > 3){
 										echo '<span class="post-date">';
-										echo "<a href='full-width.php?archive=".$arch[3]."'>";
+										echo "<a href='full-width.php?archive=".$data[3]['archive']."'>";
 										echo "<time class='entry-date' datetime='".$data[3]["date_published"]."'>";
 										echo $data[3]["date_published"];
 										echo "</time>";
@@ -436,32 +439,23 @@
 									?>
 							</ul>
 						</div>
-
-						<?php
-						$month = "month(archive)";
-						$year = "year(archive)";
-						$archives_query_str = "SELECT ".$month." , ".$year." FROM blog.archives where 1";
-
-						$archives_query = mysqli_query($conn,$archives_query_str);
-
-						$archives_query = $conn->query($archives_query_str);
-
-						$archives = array();
-
-						while($row = $archives_query->fetch_assoc()){
-							array_push($archives,$row[$year]."-0".$row[$month]);
-						}
-
-						?>
 						<div class="widget widget-archives">
 							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<?php
-									for($x = 0; $x < count($archives); $x++){
+									$sql = 'select distinct year(archive), month(archive) from articles';
+									$stmt = $conn->prepare($sql);
+									$stmt->bind_result($year,$month);
+									$stmt->execute();
+
+									while($stmt->fetch()){
+										$archive = "$year-$month";
 										echo "<li>";
-										echo "<a href='full-width.php?archive=".$archives[$x]."'>".$archives[$x]."</a>";
+										echo "<a href='full-width.php?archive=".$archive."'>".$archive."</a>";
 										echo "</li>";
 									}
+
+									$stmt->close();
 								?>
 							</ul>
 						</div>

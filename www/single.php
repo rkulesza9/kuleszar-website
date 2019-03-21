@@ -4,15 +4,30 @@
 		die("Connection failed: ".$conn->connect_error);
 	} else {
 		$article = $_GET['article_id'];
-		$query_str = "SELECT id, author, tags, content, date_published, title FROM blog.articles WHERE id=?";
+		$query_str = "SELECT id, author, content, date_published, title FROM blog.articles WHERE id=?";
 		$stmt = $conn->prepare($query_str);
 		$stmt->bind_param("i",$article);
 
-		$stmt->bind_result($id,$author,$tags,$content,$date_published,$title);
+		$stmt->bind_result($id,$author,$content,$date_published,$title);
 		$stmt->execute();
 		$stmt->fetch();
+		$tags = 'puppy';
 		$data = array("id"=>$id,"author"=>$author,"tags"=>$tags,"content"=>$content,"date_published"=>$date_published,"title"=>$title);
 
+		$stmt->close();
+
+		//get $tags
+		$sql = "select tag from tags where id in (select t_id from tagged where a_id=?)";
+		$stmt = $conn->prepare($sql);
+		$stmt->bind_param("i",$data["id"]);
+		$stmt->bind_result($tag);
+		$stmt->execute();
+		$stmt->fetch();
+		$tags = $tag;
+		while($stmt->fetch()){
+			$tags .= ";".$tag;
+		}
+		$data['tags'] = $tags;
 		$stmt->close();
 	}
 
@@ -24,6 +39,7 @@
 		<!-- meta -->
 		<meta charset="UTF-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
+			<meta property="fb:admins" content="10203703369573633"/>
 
 	    <!-- css -->
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -55,7 +71,7 @@
 
 
 
-	    <meta property="fb:app_id" content="1628581433917037" />
+
 
 
 		<div class="container">
@@ -132,7 +148,7 @@
 									<span class="post-author"><a href="about.php"><?php echo $data['author']; ?></a></span>
 
 									<?php
-										echo '<a href="single.php?article_id='.$data["id"].'">';
+										echo '<a href="http://www.kuleszar.com/single.php?article_id='.$data["id"].'">';
 										echo '<span class="fb-comments-count" data-href="http://www.kuleszar.com/single.php?article_id='.$data["id"].'">0</span>';
 										echo ' Comments</a>';
 									?>
@@ -176,30 +192,24 @@
 							</ul>
 						</div>
 
-						<?php
-
-						$month = "month(archive)";
-						$year = "year(archive)";
-						$archives_query_str = "SELECT ".$month." , ".$year." FROM blog.archives where 1";
-						$archives_query = mysqli_query($conn,$archives_query_str);
-
-						$archives = array();
-
-						while($row = mysqli_fetch_assoc($archives_query)){
-							array_push($archives,$row[$year]."-0".$row[$month]);
-						}
-
-						?>
 						<div class="widget widget-archives">
 							<h3 class="widget-title">Archives</h3>
 							<ul>
-								<?php
-									for($x = 0; $x < count($archives); $x++){
-										echo "<li>";
-										echo "<a href='full-width.php?archive=".$archives[$x]."'>".$archives[$x]."</a>";
-										echo "</li>";
-									}
-								?>
+							<?php
+								$sql = 'select distinct year(archive), month(archive) from articles';
+								$stmt = $conn->prepare($sql);
+								$stmt->bind_result($year,$month);
+								$stmt->execute();
+
+								while($stmt->fetch()){
+									$archive = "$year-$month";
+									echo "<li>";
+									echo "<a href='full-width.php?archive=".$archive."'>".$archive."</a>";
+									echo "</li>";
+								}
+
+								$stmt->close();
+							?>
 							</ul>
 						</div>
 
