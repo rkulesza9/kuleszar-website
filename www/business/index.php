@@ -285,6 +285,8 @@
                       Currently attending Kean University until graduation on May, 2020.
                       <br>Maintained a GPA of above 3.8.
                       <br>Dean's List Honoree.
+                      <br>Phi Kappa Phi (National Honor Society)
+                      <br>Lambda Alpha Sigma (Kean’s Honor Society)
 										</p>
 									</div><!--/.timeline-content-->
 								</div><!--/.timeline-->
@@ -340,7 +342,7 @@
 
 												</div>
 											</div>
-											<h3>6 years</h3>
+											<h3>2 Github Projects, 5 classes</h3>
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
@@ -351,7 +353,7 @@
 
 											   </div>
 											</div>
-											<h3>6 years</h3>
+											<h3>2 Github Projects, 1 Job, 2 Classes</h3>
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
@@ -362,7 +364,7 @@
 
 											   </div>
 											</div>
-											<h3>2 years</h3>
+											<h3>Undergrad Research, 1 Class</h3>
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
@@ -373,7 +375,7 @@
 
 											   </div>
 											</div>
-											<h3>2 years</h3>
+											<h3>2 Classes</h3>
 										</div>
 									</div><!-- /.barWrapper -->
 								</div>
@@ -388,18 +390,18 @@
 
 												</div>
 											</div>
-											<h3>6 years</h3>
+											<h3>2 Github Projects, 1 Job, 2 Classes</h3>
 										</div>
 									</div><!-- /.barWrapper -->
 									<div class="barWrapper">
-										<span class="progressText">MySQL</span>
+										<span class="progressText">SQL</span>
 										<div class="single-progress-txt">
 											<div class="progress ">
 											   <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="10" aria-valuemax="100" style="">
 
 											   </div>
 											</div>
-											<h3>6 years</h3>
+											<h3>2 Github Projects, 1 Job, 2 Classes</h3>
 										</div>
 									</div><!-- /.barWrapper
 									<div class="barWrapper">
@@ -421,7 +423,7 @@
 
 											   </div>
 											</div>
-											<h3>4 years</h3>
+											<h3>2 Github Projects</h3>
 										</div>
 									</div><!-- /.barWrapper
 								</div>

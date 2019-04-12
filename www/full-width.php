@@ -25,7 +25,7 @@
 
 		$query_str = "SELECT id, SUBSTRING(content,1,500), title, date_published, author FROM blog.articles";
 		$query_str = $query_str." ".$adjustment;
-		$query_str = $query_str." ORDER BY date_published DESC LIMIT 4";
+		$query_str = $query_str." ORDER BY date_published DESC";
 
 		$stmt = $conn->prepare($query_str);
 
