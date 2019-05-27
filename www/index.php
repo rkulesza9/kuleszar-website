@@ -443,7 +443,7 @@
 							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<?php
-									$sql = 'select distinct year(archive), month(archive) from articles';
+									$sql = 'select distinct year(archive), month(archive) from articles order by year(archive), month(archive) desc';
 									$stmt = $conn->prepare($sql);
 									$stmt->bind_result($year,$month);
 									$stmt->execute();

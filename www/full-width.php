@@ -39,8 +39,8 @@
 			$end = $_GET['archive']."-31";
 		}
 		if(isset($_GET['search'])){
-			$stmt->bind_param("ssss",$srch,$srch,$srch,$srch);
 			$srch = $_GET['search'];
+			$stmt->bind_param("ssss",$srch,$srch,$srch,$srch);
 		}
 
 		$stmt->bind_result($id,$cont,$title,$dp,$author);

@@ -93,23 +93,20 @@
 								<table id='tbl1'>
 									<tbody id='tbl1-body'>
 									<tr><th>Name</th><td>Robert Kulesza</td><th>University</th><td>Kean University</td></tr>
-									<tr><th>Age</th><td>23</td><th>Major</th><td>Mathematics & Computer Science</td></tr>
-									<tr><th>Birthdate</th><td>August 4, 1995</td><th>grad. date</th><td>May 2020</td></tr>
+									<tr><th>Age</th><td>23</td><th>Major</th><td>Computer Information Systems M.S.</td></tr>
+									<tr><th>Birthdate</th><td>August 4, 1995</td><th>grad. date</th><td>May 2021</td></tr>
 								</tbody>
 								</table>
 
 								<h1> Hello World! </h1>
-								<p>I am a Computer Science and Mathematics major at Kean university. I love doing mathematics, programming, and creating things. Most of all, I enjoy learning and strive to constantly be in a position to learn new things. This website is the product of those four things. </p>
-
-								<h2>What can you expect to find here?</h2>
-
-								<p> I'm going to compile a list of categories that will give you a quick picture of what I will post on here. I'll update the list as time goes on. As a mathematics student, I know it's important to be concise! </p>
-
-								<ul>
-									<li>General Science, Computer Science, and Mathematics Articles</li>
-									<li>math proofs</li>
-									<li>personal life & accomplishments</li>
-								</ul>
+								<p>My name is Robert Kulesza. I graduated from Kean University in August 2019 with a BA in Mathematics. Additionally I graduated from the same university in May 2021 with a MS in Computer Information Systems.</p>
+								<p>This website is my personal residence on the web where I can share: 
+								     <ul>
+											 <li> personal accomplishments and updates about my life.</li>
+											 <li> interesting articles about computer science and mathematics.</li>
+											 <li> anything else I may want to share with others.</li>
+										 </ul>
+								</p>
 
 
 								<div class="height-40px"></div>
