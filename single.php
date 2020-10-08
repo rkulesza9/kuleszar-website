@@ -4,7 +4,7 @@
 		die("Connection failed: ".$conn->connect_error);
 	} else {
 		$article = $_GET['article_id'];
-		$query_str = "SELECT id, author, content, date_published, title FROM blog.articles WHERE id=?";
+		$query_str = "SELECT id, author, content, date_published, title FROM articles WHERE id=?";
 		$stmt = $conn->prepare($query_str);
 		$stmt->bind_param("i",$article);
 
@@ -172,7 +172,7 @@
 							<h3 class="widget-title">Recent Posts</h3>
 							<ul>
 									<?php
-										$rp_query_str = "SELECT * FROM blog.articles ORDER BY date_published DESC LIMIT 3";
+										$rp_query_str = "SELECT * FROM articles ORDER BY date_published DESC LIMIT 3";
 										$rp_query = mysqli_query($conn,$rp_query_str);
 										$rec_posts = array();
 
@@ -215,7 +215,7 @@
 
 						<?php
 
-						$tags_query_str = "SELECT * FROM blog.tags where 1";
+						$tags_query_str = "SELECT * FROM tags where 1";
 						$tags_query = mysqli_query($conn,$tags_query_str);
 
 						$tags = array();

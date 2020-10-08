@@ -23,7 +23,7 @@
 			$adjustment = "WHERE INSTR(tags, ?) OR date_published= ? OR INSTR(title, ?) OR INSTR(content, ?)";
 		}
 
-		$query_str = "SELECT id, SUBSTRING(content,1,500), title, date_published, author FROM blog.articles";
+		$query_str = "SELECT id, SUBSTRING(content,1,500), title, date_published, author FROM articles";
 		$query_str = $query_str." ".$adjustment;
 		$query_str = $query_str." ORDER BY date_published DESC";
 

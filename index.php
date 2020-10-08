@@ -462,7 +462,7 @@
 
 						<?php
 
-						$tags_query_str = "SELECT * FROM blog.tags where 1";
+						$tags_query_str = "SELECT * FROM tags where 1";
 
 						$tags_query = $conn->query($tags_query_str);
 
